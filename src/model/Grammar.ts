@@ -7,7 +7,7 @@ const STARTING_VAR_NAME : string = "S";
  * 
  * @property {string[]} _indexer An array 
 */
-export default class Grammar {   
+class Grammar {   
 
     private _indexer : string[];
     private _variables : string[][];
@@ -16,18 +16,6 @@ export default class Grammar {
         this._indexer = [STARTING_VAR_NAME]; //Initialize indexer with size 1 with empty at 0
         this._variables = [[]]; //Initialize variables with size 1 with empty array at 0
         this.fillGrammar(vars);
-    }
-
-    public getVarsToSeparator() : string {
-        return VARS_TO_SEPARATOR;
-    }
-
-    public getVarSeparator() : string {
-        return VAR_SEPARATOR
-    }
-
-    public getTerminalIndicator() : string {
-        return TERMINAL_INDICATOR;
     }
 
     /**
@@ -76,5 +64,31 @@ export default class Grammar {
         });
     
     }
+
+    public toString(): string {
+        let asString : string = "{\n\t";
+        
+        for (let i = 0; i < this._indexer.length; i++) {
+            const index : string = this._indexer[i];
+            const rules : string[] = this._variables[i];
+            let rulesFormat : string = ""; 
+            rules.forEach(element => {
+                rulesFormat += ` ${element} ${VAR_SEPARATOR}`;
+            });
+            rulesFormat.slice(0, rulesFormat.length - 1);
+            asString += `${index} ${VARS_TO_SEPARATOR} ${rulesFormat.replaceAll(TERMINAL_INDICATOR, "")}\n\t`;
+        }
+        asString = asString.slice(0, asString.length - 1) + "}";
+        return asString;
+    }
+
+    public getIndexer() : string[] {
+        return this._indexer;
+    }
+    
+    public getVariables() : string[][] {
+        return this._variables;
+    }
 }
 
+export {Grammar, VARS_TO_SEPARATOR, VAR_SEPARATOR, TERMINAL_INDICATOR};
