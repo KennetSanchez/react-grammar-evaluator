@@ -1,14 +1,14 @@
 const VARS_TO_SEPARATOR : string = "-->"
 const VAR_SEPARATOR : string = "|";
-const TERMINAL_INDICATOR : string = "\\";
 const STARTING_VAR_NAME : string = "S";
 
 /** An implementation of a Context Free Grammar (CFG) given in Chomsky Normal Form.
  * 
  * @property {string[]} _indexer An array 
 */
-class Grammar {   
+class Grammar {
 
+    public size: number;
     private _indexer : string[];
     private _variables : string[][];
 
@@ -16,6 +16,30 @@ class Grammar {
         this._indexer = [STARTING_VAR_NAME]; //Initialize indexer with size 1 with empty at 0
         this._variables = [[]]; //Initialize variables with size 1 with empty array at 0
         this.fillGrammar(vars);
+        this.size = this._indexer.length;
+    }
+
+    private fillGrammar (vars: string[]) {        
+ 
+        let startInjected : boolean = false; //Flag to assure starting rule "S" is at position 0
+    
+        vars.forEach(rule => {
+    
+            //rule --> "A -> BC | \a | ..."
+    
+            let resultingSplit : string[] = rule.split(VARS_TO_SEPARATOR) // ["A ", "BC | \a | ..."]
+            let cond : string = resultingSplit[0].trim(); // "A"
+            let res : string = resultingSplit[1]; // "BC | \a | ..."
+            let toVarsAndTerminals : string[] = res.split(VAR_SEPARATOR).map(x => x.trim()); // ["BC", "\a", ...]
+            
+            if (startInjected || cond !== STARTING_VAR_NAME) {
+                this._indexer.push(cond); //Push condition to indexer, in order of appereance unless cond is "S"
+                this._variables.push(toVarsAndTerminals); //Push result of contidion to variables, in order of appereance unless cond is "S"
+            } else {
+                this._variables[0] = toVarsAndTerminals; //Replace empty array in variables with corresponding variables for rule "S"
+                startInjected = !startInjected;
+            }
+        });
     }
 
     /**
@@ -34,37 +58,26 @@ class Grammar {
 
         let varsAndTerminals = this._variables[index] // !!!BY REFERENCE!!!
         varsAndTerminals.forEach(element => {
-            if (element[0] === TERMINAL_INDICATOR) T.push(element) //Element is a terminal, push to Terminals
+            if (element.length === 1) T.push(element) //Element is a terminal, push to Terminals
             else V.push(element); //Element was a variable pair, push to Variables
         });
 
         return {V, T};
     }
 
-    private fillGrammar (vars: string[]) {
 
-        let startInjected : boolean = false; //Flag to assure starting rule "S" is at position 0
-    
-        vars.forEach(rule => {
-    
-            //rule --> "A -> BC | \a | ..."
-    
-            let resultingSplit : string[] = rule.split(VARS_TO_SEPARATOR) // ["A ", "BC | \a | ..."]
-            let cond : string = resultingSplit[0].trim(); // "A"
-            let res : string = resultingSplit[1]; // "BC | \a | ..."
-            let toVarsAndTerminals : string[] = res.split(VAR_SEPARATOR).map(x => x.trim()); // ["BC", "\a", ...]
-            
-            if (!startInjected && cond === STARTING_VAR_NAME) {
-                this._variables[0] = toVarsAndTerminals; //Replace empty array in variables with corresponding variables for rule "S"
-                startInjected = !startInjected;
-            }
+    public toElementfromVar(element: string): string[] {
+        let S: string[] = [];
 
-            this._indexer.push(cond); //Push condition to indexer, in order of appereance unless cond is "S"
-            this._variables.push(toVarsAndTerminals); //Push result of contidion to variables, in order of appereance unless cond is "S"
-        });
-    
-    }
+        for (let index = 0; index < this._indexer.length; index++) {
+            const varName = this._indexer[index];  // !!!BY REFERENCE!!!
+            let varsAndTerminals = this._variables[index] // !!!BY REFERENCE!!!
+            if (varsAndTerminals.includes(element)) S.push(varName);
+        }
 
+        return S;
+    }   
+    
     public toString(): string {
         let asString : string = "{\n\t";
         
@@ -75,8 +88,9 @@ class Grammar {
             rules.forEach(element => {
                 rulesFormat += ` ${element} ${VAR_SEPARATOR}`;
             });
-            rulesFormat.slice(0, rulesFormat.length - 1);
-            asString += `${index} ${VARS_TO_SEPARATOR} ${rulesFormat.replaceAll(TERMINAL_INDICATOR, "")}\n\t`;
+            
+            rulesFormat = rulesFormat.slice(0, rulesFormat.length - 1);
+            asString += `${index} ${VARS_TO_SEPARATOR} ${rulesFormat}\n\t`;
         }
         asString = asString.slice(0, asString.length - 1) + "}";
         return asString;
@@ -91,4 +105,4 @@ class Grammar {
     }
 }
 
-export {Grammar, VARS_TO_SEPARATOR, VAR_SEPARATOR, TERMINAL_INDICATOR};
+export {Grammar, VARS_TO_SEPARATOR, VAR_SEPARATOR};
