@@ -1,0 +1,98 @@
+@use "./../1-global" as g;
+
+.table {   
+    margin-top: 1rem;
+    background-color: g.$background;
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__columns{
+
+    padding-left: g.$standardPaddingX;
+    padding-right: g.$standardPaddingX;
+    padding-top: g.$standardPaddingY;
+    padding-bottom: g.$standardPaddingY;
+    
+    border-radius: g.$cornerRadiusStandard;    
+    
+
+    display: grid;
+    grid-template-rows: 30px;
+        
+        &__header{
+                justify-self: center;
+                max-width: fit-content;
+        }
+    
+        &__input{
+            gap: 1rem;
+
+            display: flex;
+            justify-content: space-around;
+            padding-top: g.$standardPaddingY;
+                align-self: center;
+                grid-column: 1;
+            }
+        
+
+        &__output{
+            display: flex;
+            justify-content: space-around;
+            
+            &1{
+                align-self: center;
+                grid-column: 1;
+            }
+            
+            &2{
+                align-self: center;
+                grid-column: 2;            
+            }
+
+            &3{
+                align-self: center;
+                grid-column: 3;
+            } 
+        }
+    }
+}
+
+input{
+    border-radius: g.$cornerRadiusStandard;
+    border: 0.125rem solid g.$lightGray;
+    height: 1.25rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 5px;
+
+    &:focus {
+        outline-color: g.$bone;
+    }    
+}
+
+#rowButtons{
+    display: flex;
+    margin-top: 2rem;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    border-radius: g.$cornerRadiusStandard;
+    padding-left: g.$standardPaddingX;
+    padding-right: g.$standardPaddingX;
+    padding-top: g.$standardPaddingY;
+    padding-bottom: g.$standardPaddingY;
+}
+
+#addRowBtn{
+    background-color: g.$primary;
+    color: g.$button_text;
+
+}
+
+#removeRowBtn{
+    background-color: g.$secondary;
+    color: g.$button_text;
+}

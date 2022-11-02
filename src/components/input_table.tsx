@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row } from './row_table'
-
+import "./../scss/4-components/_table.scss";
 
 export const InputTable = (
     props : {
@@ -20,22 +20,16 @@ export const InputTable = (
         setRows(rows.slice(0,-1))
     }
 
-    
-
-    let hc = 0;
     return (
         <section>
             <section id="rowButtons">
-                <button onClick={addRow}>Añadir fila</button>
-                <button onClick={removeRow}>Añadir fila</button>
-
+                <button id = "addRowBtn" onClick={addRow}>Añadir fila</button>
+                <button id = "removeRowBtn" onClick={removeRow}>Remover fila</button>
             </section>
             
             <div className= {"table"}>
                 <div className={"table__columns"}>
-                    <section className={"table__columns__header"}>
-                        <h4 className={`table__columns__header${hc=hc+1}`}></h4>
-                    </section>
+                        <h1 className={`table__columns__header`}>{props.columnNames[0]}</h1>
                     <section id = {props.id}>
                     {rows.map(()=>{
                             return(
