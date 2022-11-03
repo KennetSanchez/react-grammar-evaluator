@@ -1,7 +1,8 @@
-import React from 'react';
 import { cyk } from './model/CYK';
 import { InputTable } from './components/input_table';
 import {Grammar, VARS_TO_SEPARATOR, VAR_SEPARATOR } from './model/Grammar';
+import "./scss/3-layout/_appLayout.scss";
+
 
 function App() {
 

@@ -1,0 +1,5 @@
+@use "./../1-global" as g;
+
+.App{
+    background-color: g.$background;
+}

@@ -2,10 +2,11 @@
 
 .table {   
     margin-top: 1rem;
-    background-color: g.$background;
-    max-width: max-content;
+    background-color: g.$secondary_background;
+    max-width: 65rem;
     margin-left: auto;
     margin-right: auto;
+    border-radius: g.$cornerRadiusStandard;
 
     &__columns{
 
@@ -84,6 +85,11 @@ button{
     padding-right: g.$standardPaddingX;
     padding-top: g.$standardPaddingY;
     padding-bottom: g.$standardPaddingY;
+    outline: none;
+    border: none;
+    -webkit-box-shadow: -18px 31px 45px -22px rgba(0,0,0,0.87);
+    -moz-box-shadow: -18px 31px 45px -22px rgba(0,0,0,0.87);
+    box-shadow: -18px 31px 45px -22px rgba(0,0,0,0.87);
 }
 
 #addRowBtn{
