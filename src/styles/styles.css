@@ -122,7 +122,7 @@ input:focus {
 #rowButtons {
   display: flex;
   margin-top: 2rem;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   justify-content: center;
 }
@@ -144,6 +144,7 @@ button {
 }
 button:hover {
   cursor: pointer;
+  transition: all 150ms ease-in;
 }
 
 #addRowBtn {
@@ -160,6 +161,16 @@ button:hover {
 #removeRowBtn:hover {
   background-color: #ddc4d4;
   color: #D9376E;
+}
+
+#runBtn {
+  background-color: #337833;
+  transition: all 250ms ease-in;
+}
+#runBtn:hover {
+  background-color: #A3C9A8;
+  filter: drop-shadow(0 0rem 0.3125rem #198820);
+  color: #337833;
 }
 
 /*# sourceMappingURL=styles.css.map */

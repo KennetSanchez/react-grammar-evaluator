@@ -78,7 +78,7 @@ input{
 #rowButtons{
     display: flex;
     margin-top: 2rem;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     justify-content: center;
 }
@@ -100,6 +100,7 @@ button{
 
     &:hover {
         cursor: pointer;
+        transition: all 150ms ease-in;
     }
 }
 
@@ -118,5 +119,16 @@ button{
     &:hover {
         background-color: g.$washedPink;
         color: g.$secondary;
+    }
+}
+
+#runBtn{
+    background-color: g.$ternary;
+    transition: all 250ms ease-in;
+
+    &:hover {
+        background-color: g.$etonBlueGreen;
+        filter: drop-shadow(0 0rem 0.3125rem rgb(25, 136, 32));
+        color: g.$ternary;
     }
 }

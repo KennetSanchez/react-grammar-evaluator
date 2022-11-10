@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row } from './row_table'
 import "./../scss/4-components/_table.scss";
+import { cyk } from '../model/CYK';
 
 export const InputTable = (
     props : {
@@ -22,10 +23,15 @@ export const InputTable = (
         setRows(rows.slice(0,-1))
     }
 
+    const runCyk = () => {
+        // cyk();
+    }
+
     return (
         <section>
             <section id="rowButtons">
                 <button id = "addRowBtn" onClick={addRow}>Añadir fila</button>
+                <button id = "runBtn" onClick={runCyk}>¡Probar!</button>
                 <button id = "removeRowBtn" onClick={removeRow}>Remover fila</button>
             </section>
             
