@@ -7,7 +7,7 @@ let word : string;
 /**Function that takes a Free of Context Grammar in Normal Chomsky Form, and a word, and asseses 
  * whether said word can be generated with the given grammar. */
 const cyk = (g: Grammar, w: string): boolean => {
-    let isGenerated : boolean = true;
+    let isGenerated : boolean = false;
     
     grammar = g; // These are pointers
     word = w;
@@ -15,17 +15,9 @@ const cyk = (g: Grammar, w: string): boolean => {
     let length : number = word.length;
     globalMatrix = spawnMatrix(length);    
     firstCycle();
-    jLoop(length);
-    printMatrix();
-    
-
+    cyk_algorithm(length);    
+    if (globalMatrix[length - 1][0].includes('S')) isGenerated = true;
     return isGenerated;
-}
-
-const printMatrix = () => {
-    console.log(`printing matrix for string ${word}:`);
-    globalMatrix.forEach(col => console.log(`J: ${col.toString()}`));
-    console.log("^^printing matrix");
 }
 
 const firstCycle = () => {
@@ -48,39 +40,35 @@ const spawnMatrix = (n : number) : string[][][] => {
     return matrix;
 }
 
-const jLoop = (n : number) => {
-    for (let j = 1; j <= n; j++) {
-        iLoop(n, j);
-    }
-}
+const cyk_algorithm = (n : number) => {
+    for (let j = 2; j <= n; j++) {
+        for (let i = 1; i <= n - j + 1; i++) {
+            let XijLeadsTo : string[] = []; // Initialize the set of rules Xij generates
+            let Xij : string[] = [];
 
-const iLoop = (n : number, j : number) => {
-    for (let i = 1; i <= n - j + 1; i++) {
-        kLoop(j + 1, i);
-    }
-}
+            for (let k = 1; k < j; k++) {
+                
+                let Xik : string[] = globalMatrix[k - 1][i- 1];
+                let iPlusK : number = i + k;
+                let jMinusK : number = j - k;                
+                let Xikjk : string[] = globalMatrix[jMinusK - 1][iPlusK - 1];
+                
+                let contentXij : string[] = concat(Xik, Xikjk);
 
-const kLoop = (j : number, i : number) => {
-    let XijLeadsTo : string[] = []; // Initialize the set of rules Xij generates
-    let Xij : string[] = [];
-    for (let k = 1; k <= j; k++) {
-        let Xik : string[] = globalMatrix[k - 1][i- 1];
-        let iPlusK = i + k- 1;
-        let jMinusK = j - k- 1;
-        let Xikjk : string[] = globalMatrix[jMinusK][iPlusK];
-        
-        let contentXij : string[] = concat(Xik, Xikjk);
-
-        for (let c = 0; c < contentXij.length; c++) {
-            let con :string = contentXij[c];
-            if (!XijLeadsTo.includes(con)) {
-                XijLeadsTo.push(con);
-                Xij = grammar.toElementfromVar(con);
+                for (let c = 0; c < contentXij.length; c++) {
+                    let con :string = contentXij[c];
+                    if (!XijLeadsTo.includes(con)) {
+                        XijLeadsTo.push(con);
+                        grammar.toElementfromVar(con).forEach(e => {
+                            if (!Xij.includes(e)) Xij.push(e);
+                        })
+                    }
+                }
             }
+            
+            globalMatrix[j- 1][i- 1] = Xij.slice();
         }
     }
-    
-    globalMatrix[j- 1][i- 1] = Xij;
 }
 
 const concat = (setA : string[], setB : string[]) : string[] => {

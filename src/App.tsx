@@ -19,8 +19,7 @@ function App() {
 
   console.log(G1.toString());
   
-  cyk(G1, w1);
-  
+  console.log(cyk(G1, w1));
 
   return (
     <div className="App">
