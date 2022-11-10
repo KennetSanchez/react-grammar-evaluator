@@ -1,3 +1,165 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #EFF0F3;
+}
+
+.table {
+  margin-top: 1rem;
+  background-color: #FFFFFE;
+  max-width: 65rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3125rem;
+}
+.table__columns {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 0.3125rem;
+  display: grid;
+  grid-template-rows: 30px;
+}
+.table__columns__header {
+  justify-self: center;
+  max-width: fit-content;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.table__columns__input {
+  gap: 1rem;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1rem;
+  align-self: center;
+  grid-column: 1;
+}
+.table__columns__output {
+  display: flex;
+  justify-content: space-around;
+}
+.table__columns__output1 {
+  align-self: center;
+  grid-column: 1;
+}
+.table__columns__output2 {
+  align-self: center;
+  grid-column: 2;
+}
+.table__columns__output3 {
+  align-self: center;
+  grid-column: 3;
+}
+
+input {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border-radius: 0.3125rem;
+  border: 0.125rem solid #F0F0F0;
+  height: 1.5rem;
+  margin-bottom: 5px;
+  width: 22rem;
+  padding: 0.0625rem 0.3125rem;
+  font-size: 1rem;
+}
+input:focus {
+  outline-color: #DDD8C4;
+}
+
+#rowButtons {
+  display: flex;
+  margin-top: 2rem;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  border-radius: 0.3125rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  outline: none;
+  border: none;
+  min-width: 11rem;
+  font-weight: bold;
+  color: #e4e4e4;
+  -webkit-box-shadow: -18px 31px 45px -22px rgba(0, 0, 0, 0.87);
+  -moz-box-shadow: -18px 31px 45px -22px rgba(0, 0, 0, 0.87);
+  box-shadow: -18px 31px 45px -22px rgba(0, 0, 0, 0.87);
+}
+button:hover {
+  cursor: pointer;
+}
+
+#addRowBtn {
+  background-color: #FF8E3C;
+}
+#addRowBtn:hover {
+  background-color: #ddcdc4;
+  color: #FF8E3C;
+}
+
+#removeRowBtn {
+  background-color: #D9376E;
+}
+#removeRowBtn:hover {
+  background-color: #ddc4d4;
+  color: #D9376E;
+}
 
 /*# sourceMappingURL=index.css.map */

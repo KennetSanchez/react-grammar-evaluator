@@ -10,10 +10,12 @@ export const InputTable = (
 
 )=>{
 
-    const [rows, setRows] = React.useState([<Row/>])
+    const [count, setCount] = React.useState(1);
+    const [rows, setRows] = React.useState([<Row iterNum={count} onEnter={addRow}/>]);
 
     function addRow():void{
-        setRows(rows.concat(<Row/>))
+        setCount(count + 1);
+        setRows(rows.concat(<Row iterNum={count} onEnter={addRow}/>));
     }
 
     function removeRow():void{
@@ -33,7 +35,7 @@ export const InputTable = (
                     <section id = {props.id}>
                     {rows.map(()=>{
                             return(
-                            <Row/>
+                            <Row onEnter={addRow}/>
                             )                     
                         })}
 
