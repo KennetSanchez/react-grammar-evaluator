@@ -1,7 +1,9 @@
 
 export const Row = (
     props : {
+        id? : string,
         iterNum? : number,
+        placeHolder? : string,
         onEnter : () => any
     }) => 
     {
@@ -14,7 +16,7 @@ export const Row = (
 
         return(
             <section className="table__columns__input"> 
-                <input autoFocus className = {`table__columns__input${props.iterNum}`} type = "text" onKeyDown={_handleKeyDown} ></input>
+                <input id={props.id} autoFocus className = {`table__columns__input${props.iterNum}`} placeholder={props.placeHolder} type = "text" onKeyDown={_handleKeyDown} ></input>
             </section>
         );
 }

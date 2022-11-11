@@ -7,6 +7,10 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: g.$cornerRadiusStandard;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: g.$standardPaddingX g.$standardPaddingY;
 
     &__columns{
 
@@ -104,6 +108,19 @@ button{
     }
 }
 
+.utility {
+    min-width: 3.5rem;
+    width: 3.5rem;
+    font-weight: 700;
+    font-size: 1rem;     
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #addRowBtn{
     background-color: g.$primary;
 
@@ -131,4 +148,8 @@ button{
         filter: drop-shadow(0 0rem 0.3125rem rgb(25, 136, 32));
         color: g.$ternary;
     }
+}
+
+.tested__string {
+    align-self: flex-start;
 }

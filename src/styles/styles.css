@@ -57,6 +57,11 @@ body {
   background-color: #EFF0F3;
 }
 
+h3 {
+  font-weight: 500;
+  font-size: 1.0625rem;
+}
+
 .table {
   margin-top: 1rem;
   background-color: #FFFFFE;
@@ -64,6 +69,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1rem;
 }
 .table__columns {
   padding-left: 1.5rem;
@@ -147,6 +156,19 @@ button:hover {
   transition: all 150ms ease-in;
 }
 
+.utility {
+  min-width: 3.5rem;
+  width: 3.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #addRowBtn {
   background-color: #FF8E3C;
 }
@@ -171,6 +193,10 @@ button:hover {
   background-color: #A3C9A8;
   filter: drop-shadow(0 0rem 0.3125rem #198820);
   color: #337833;
+}
+
+.tested__string {
+  align-self: flex-start;
 }
 
 /*# sourceMappingURL=styles.css.map */
